@@ -1,9 +1,17 @@
 
 import React from "react";
 
-const MovieCard= () => {
+const MovieCard= (props) => {
     return (
-        <h1>MovieCard</h1>
+        <>
+        <fieldset>
+            <legend>MovieCard</legend>
+            <img src={props.imageURL}></img>
+            <h2> {props.movieName}</h2>
+            <p>Ratings: {props.movieRating} </p>
+        </fieldset>
+
+        </>
     )
 }
 

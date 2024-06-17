@@ -1,12 +1,15 @@
-import { useState } from 'react'
-import './App.css'
-import MovieCard from "./Components/MovieCard/MovieCard";
-import MovieList from "./Components/PokemonList/PokemonList"
+import "./App.css";
+import MovieList from "./Components/MovieList/MovieList";
 
 const App = () => {
-  <div className="App">
-    
-  </div>
-}
+  return (
+  <>
+    <fieldset>
+      <legend>App.jsx</legend>
+      <MovieList />
+    </fieldset>
+  </>
+    );
+};
 
-export default App
+export default App;
