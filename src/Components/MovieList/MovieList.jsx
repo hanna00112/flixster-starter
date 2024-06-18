@@ -39,9 +39,9 @@ const MovieList = () => {
     setLoading(true);
     const apiKey = import.meta.env.VITE_API_KEY;
     let searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchTerm}&page=${page}`;
-    //if (searchTerm == "") {
-    //  searchUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${page}`;
-    //}
+    if (searchTerm == "") {
+      searchUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${page}`;
+    }
     const response = await fetch(searchUrl);
     const data = await response.json();
     console.log(data.results);
