@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import MovieCard from "../MovieCard/MovieCard";
 import "./MovieList.css";
+import Modal from "../Modal/Modal";
 
 const MovieList = () => {
   const [movies, setMovies] = useState([]); // populating the movies on the page
@@ -8,7 +9,6 @@ const MovieList = () => {
   const [loading, setLoading] = useState(false); //if movies are currently being fetched
   const [selectedMovie, setSelectedMovie] = useState(null); // used for search bar
   const [searchTerm, setSearchTerm] = useState(""); // used for the seach bar
-
 
   useEffect(() => {
     async function fetchMovie() {
@@ -57,18 +57,20 @@ const MovieList = () => {
     fetchSearch();
   };
 
-
   return (
     <>
-        <div className="search-container">
-          <input
-            type="text"
-            placeholder="Search Movie..."
-            value={searchTerm}
-            onChange={(e) => {setSearchTerm(e.target.value); handleSearch();}}
-            className="search-input"
-          />
-        </div>
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search Movie..."
+          value={searchTerm}
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+            handleSearch();
+          }}
+          className="search-input"
+        />
+      </div>
       <div className="Movie-Cards">
         {filteredMovies.map((movie) => (
           <MovieCard
@@ -76,6 +78,7 @@ const MovieList = () => {
             imageURL={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             movieName={movie.original_title}
             movieRating={movie.vote_average}
+            onClick={() => setSelectedMovie(movie)}
           />
         ))}
       </div>
@@ -85,6 +88,24 @@ const MovieList = () => {
           {/* Display "Loading..." when fetching */}
         </button>
       </div>
+
+      {/* Ternary Statement*/}
+
+      {selectedMovie && (
+        <Modal
+          show={selectedMovie !== null}
+          onClose={() => setSelectedMovie(null)}
+        >
+          <h2>{selectedMovie.title}</h2>
+          <h4>Rating: {selectedMovie.vote_average}</h4>
+          <p>{selectedMovie.overview}</p>
+          <img
+            src={`https://image.tmdb.org/t/p/w500${selectedMovie.poster_path}`}
+            alt={selectedMovie.original_title}
+            style={{ width: "100%}" }}
+          />
+        </Modal>
+      )}
     </>
   );
 };
