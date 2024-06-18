@@ -9,6 +9,9 @@ const MovieList = () => {
   const [loading, setLoading] = useState(false); //if movies are currently being fetched
   const [selectedMovie, setSelectedMovie] = useState(null); // used for search bar
   const [searchTerm, setSearchTerm] = useState(""); // used for the seach bar
+  const [sortType, setSortType] = useState(""); // used for the drop-down menu
+
+  // useState isSearching 
 
   useEffect(() => {
     async function fetchMovie() {
@@ -51,11 +54,33 @@ const MovieList = () => {
   const filteredMovies = movies.filter((movie) =>
     movie.original_title.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
   const handleSearch = () => {
     setpage(1);
     fetchSearch();
   };
+  const sortMovies = (movies, type) => {
+    switch (type) {
+      case "alphabetic":
+        return [...movies].sort((a, b) => a.original_title.localeCompare(b.original_title));
+      case "release_date":
+        return [...movies].sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
+      case "rating":
+        return [...movies].sort((a, b) => b.vote_average - a.vote_average);
+      default:
+        return movies;
+    }
+  };
+
+  const handleSortChange = (e) => {
+    setSortType(e.target.value);
+  };
+
+  //const filteredMovies = movies.filter((movie) =>
+  //  movie.original_title.toLowerCase().includes(searchTerm.toLowerCase())
+  //);
+
+  const sortedMovies = sortMovies(filteredMovies, sortType);
+
 
   return (
     <>
@@ -71,10 +96,20 @@ const MovieList = () => {
           }}
           className="search-input"
         />
+        {/* CODE FOR THE DROP DOWN MENU*/}
       </div>
+      <div className="filter-container">
+        <select value={sortType} onChange={handleSortChange} className="sort-dropdown">
+          <option value="">Sort By</option>
+          <option value="alphabetic">Alphabetic</option>
+          <option value="release_date">Release Date</option>
+          <option value="rating">Rating</option>
+        </select>
+      </div>
+
       {/* CODE FOR THE MOVIE CARDS*/}
       <div className="Movie-Cards">
-        {filteredMovies.map((movie) => (
+        {sortedMovies.map((movie) => (
           <MovieCard
             key={movie.id}
             imageURL={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -108,6 +143,7 @@ const MovieList = () => {
           />
         </Modal>
       )}
+
     </>
   );
 };
