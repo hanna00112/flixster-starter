@@ -1,33 +1,89 @@
-
 import { useState, useEffect } from "react";
-import MovieCard from "../MovieCard/MovieCard"
+import MovieCard from "../MovieCard/MovieCard";
+import "./MovieList.css";
 
 const MovieList = () => {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState([]); // populating the movies on the page
+  const [page, setpage] = useState(1); // LOADING PAGE: keeps track of current page number
+  const [loading, setLoading] = useState(false); //if movies are currently being fetched
+  const [selectedMovie, setSelectedMovie] = useState(null); // used for search bar
+  const [searchTerm, setSearchTerm] = useState(""); // used for the seach bar
+
 
   useEffect(() => {
     async function fetchMovie() {
+      setLoading(true); //set loading state to true before fetching
       const apiKey = import.meta.env.VITE_API_KEY;
-      let url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`;
+      let url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${page}`;
       const response = await fetch(url);
       const data = await response.json();
       console.log(data.results);
-      setMovies(data.results);
+      if (page === 1) {
+        setMovies(data.results);
+      } else {
+        setMovies((prevMovies) => [...prevMovies, ...data.results]); // append new movies to existing list
+      }
+      setLoading(false); // set loading to false after fetching
     }
     fetchMovie();
-  }, []);
+  }, [page]);
+
+  async function fetchSearch() {
+    setLoading(true);
+    const apiKey = import.meta.env.VITE_API_KEY;
+    let searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchTerm}&page=${page}`;
+    const response = await fetch(searchUrl);
+    const data = await response.json();
+    console.log(data.results);
+    if (page === 1) {
+      setMovies(data.results); // Set initial movies
+    } else {
+      setMovies((prevMovies) => [...prevMovies, ...data.results]); // Append new movies
+    }
+    setLoading(false);
+  }
+
+  // handle for "load More" button click event
+  const handleLoadMore = () => {
+    setpage((prevPage) => prevPage + 1);
+  };
+  // Filter movie based on search term
+  const filteredMovies = movies.filter((movie) =>
+    movie.original_title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const handleSearch = () => {
+    setpage(1);
+    fetchSearch();
+  };
+
 
   return (
     <>
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Search Movie..."
+            value={searchTerm}
+            onChange={(e) => {setSearchTerm(e.target.value); handleSearch();}}
+            className="search-input"
+          />
+        </div>
       <div className="Movie-Cards">
-         {movies.map((movie) => (
-            <MovieCard
-                 key={movie.id}
-                 imageURL={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                 movieName= {movie.original_title}
-                 movieRating={movie.vote_average}
-            />
-            ))} 
+        {filteredMovies.map((movie) => (
+          <MovieCard
+            key={movie.id}
+            imageURL={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            movieName={movie.original_title}
+            movieRating={movie.vote_average}
+          />
+        ))}
+      </div>
+      <div className="loading-Button">
+        <button onClick={handleLoadMore} disabled={loading}>
+          {loading ? "Loading..." : "Load More"}{" "}
+          {/* Display "Loading..." when fetching */}
+        </button>
       </div>
     </>
   );
