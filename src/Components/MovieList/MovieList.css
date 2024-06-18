@@ -1,3 +1,8 @@
+
+main {
+  padding: 20px;
+}
+
 .Movie-Cards {
   display: flex;
   flex-wrap: wrap;
@@ -5,4 +10,74 @@
   padding: 20px;
   gap: 20px;
   background-color: #f0f0f0; /* Light grey background */
+}
+
+/* Styling for the search container */
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.search-input {
+  width: 60%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+.search-button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #333;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.search-button:hover {
+  background-color: #555;
+}
+/* Styling for the filter container */
+.filter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.sort-dropdown {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+/* Styling for the loading button */
+.loading-Button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.loading-Button button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #333;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+/* Styling for the modal content (adjusted to be smaller) */
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  position: relative;
+  max-width: 300px; /* Adjust max-width to make it smaller */
+  width: 80%; /* Adjust width as a percentage of the viewport */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: adds a shadow for better visibility */
+}
+.modal-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-body {
+  margin-top: 20px; /* Reduce margin-top to make better use of space */
 }
