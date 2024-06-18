@@ -10,8 +10,9 @@ const MovieList = () => {
   const [selectedMovie, setSelectedMovie] = useState(null); // used for search bar
   const [searchTerm, setSearchTerm] = useState(""); // used for the seach bar
   const [sortType, setSortType] = useState(""); // used for the drop-down menu
+  const [isSearching, setisSearching] = useState("false"); // used to toggle between discover and search on API
 
-  // useState isSearching 
+  // useState isSearching
 
   useEffect(() => {
     async function fetchMovie() {
@@ -35,6 +36,9 @@ const MovieList = () => {
     setLoading(true);
     const apiKey = import.meta.env.VITE_API_KEY;
     let searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchTerm}&page=${page}`;
+    if (searchTerm == "") {
+      searchUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${page}`;
+    }
     const response = await fetch(searchUrl);
     const data = await response.json();
     console.log(data.results);
@@ -61,9 +65,13 @@ const MovieList = () => {
   const sortMovies = (movies, type) => {
     switch (type) {
       case "alphabetic":
-        return [...movies].sort((a, b) => a.original_title.localeCompare(b.original_title));
+        return [...movies].sort((a, b) =>
+          a.original_title.localeCompare(b.original_title)
+        );
       case "release_date":
-        return [...movies].sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
+        return [...movies].sort(
+          (a, b) => new Date(b.release_date) - new Date(a.release_date)
+        );
       case "rating":
         return [...movies].sort((a, b) => b.vote_average - a.vote_average);
       default:
@@ -81,10 +89,9 @@ const MovieList = () => {
 
   const sortedMovies = sortMovies(filteredMovies, sortType);
 
-
   return (
     <>
-    {/* CODE FOR THE SEARCH BAR*/}
+      {/* CODE FOR THE SEARCH BAR*/}
       <div className="search-container">
         <input
           type="text"
@@ -92,14 +99,18 @@ const MovieList = () => {
           value={searchTerm}
           onChange={(e) => {
             setSearchTerm(e.target.value);
-            handleSearch();
+            handleSearch(), setisSearching(true);
           }}
           className="search-input"
         />
         {/* CODE FOR THE DROP DOWN MENU*/}
       </div>
       <div className="filter-container">
-        <select value={sortType} onChange={handleSortChange} className="sort-dropdown">
+        <select
+          value={sortType}
+          onChange={handleSortChange}
+          className="sort-dropdown"
+        >
           <option value="">Sort By</option>
           <option value="alphabetic">Alphabetic</option>
           <option value="release_date">Release Date</option>
@@ -143,7 +154,6 @@ const MovieList = () => {
           />
         </Modal>
       )}
-
     </>
   );
 };

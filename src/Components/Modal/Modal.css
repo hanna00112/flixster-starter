@@ -16,8 +16,8 @@
     padding: 20px;
     border-radius: 5px;
     position: relative;
-    max-width: 500px;
-    width: 90%;
+    max-width: 500px; /* Adjust max-width to make it smaller */
+    width: 80%; /* Adjust width as a percentage of the viewport */
   }
   
   .modal-header {
@@ -26,5 +26,5 @@
   }
   
   .modal-body {
-    margin-top: 20px;
+    margin-top: 40px;
   }

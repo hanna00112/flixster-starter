@@ -1,7 +1,7 @@
 import React from "react";
 import "./MovieCard.css";
 
-const MovieCard = ({ imageURL, movieName, movieRating, onClick }) => {
+const MovieCard = ({imageURL, movieName, movieRating, onClick }) => {
   return (
     <div className="card" onClick={onClick}>
       <fieldset>
