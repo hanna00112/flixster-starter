@@ -59,6 +59,7 @@ const MovieList = () => {
 
   return (
     <>
+    {/* CODE FOR THE SEARCH BAR*/}
       <div className="search-container">
         <input
           type="text"
@@ -71,6 +72,7 @@ const MovieList = () => {
           className="search-input"
         />
       </div>
+      {/* CODE FOR THE MOVIE CARDS*/}
       <div className="Movie-Cards">
         {filteredMovies.map((movie) => (
           <MovieCard
@@ -81,6 +83,7 @@ const MovieList = () => {
             onClick={() => setSelectedMovie(movie)}
           />
         ))}
+        {/* CODE FOR THE LOADING BUTTON*/}
       </div>
       <div className="loading-Button">
         <button onClick={handleLoadMore} disabled={loading}>
@@ -89,8 +92,7 @@ const MovieList = () => {
         </button>
       </div>
 
-      {/* Ternary Statement*/}
-
+      {/* Ternary Statement, CODE FOR THE MODAL*/}
       {selectedMovie && (
         <Modal
           show={selectedMovie !== null}
