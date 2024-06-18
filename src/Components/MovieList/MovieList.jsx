@@ -13,9 +13,9 @@ const MovieList = () => {
   const [selectedMovie, setSelectedMovie] = useState(null); // used for search bar
   const [searchTerm, setSearchTerm] = useState(""); // used for the seach bar
   const [sortType, setSortType] = useState(""); // used for the drop-down menu
-  const [isSearching, setisSearching] = useState("false"); // used to toggle between discover and search on API
+  //const [isSearching, setisSearching] = useState("false"); // used to toggle between discover and search on API
 
-  // useState isSearching
+
 
   useEffect(() => {
     async function fetchMovie() {
@@ -154,7 +154,7 @@ const MovieList = () => {
           <h4>Rating: {selectedMovie.vote_average}</h4>
           <p>{selectedMovie.overview}</p>
           <img
-            src={`https://image.tmdb.org/t/p/w500${selectedMovie.poster_path}`}
+            src={`https://image.tmdb.org/t/p/w500${selectedMovie.backdrop_path}`}
             alt={selectedMovie.original_title}
             style={{ width: "100%}" }}
           />
