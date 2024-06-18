@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import MovieCard from "../MovieCard/MovieCard";
 import "./MovieList.css";
 import Modal from "../Modal/Modal";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
+
 
 const MovieList = () => {
   const [movies, setMovies] = useState([]); // populating the movies on the page
@@ -36,9 +39,9 @@ const MovieList = () => {
     setLoading(true);
     const apiKey = import.meta.env.VITE_API_KEY;
     let searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchTerm}&page=${page}`;
-    if (searchTerm == "") {
-      searchUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${page}`;
-    }
+    //if (searchTerm == "") {
+    //  searchUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${page}`;
+    //}
     const response = await fetch(searchUrl);
     const data = await response.json();
     console.log(data.results);
@@ -91,6 +94,8 @@ const MovieList = () => {
 
   return (
     <>
+    <Header />
+    <main>
       {/* CODE FOR THE SEARCH BAR*/}
       <div className="search-container">
         <input
@@ -103,8 +108,9 @@ const MovieList = () => {
           }}
           className="search-input"
         />
+        <button onClick={handleSearch} className="search-button">Search</button>
+        </div>
         {/* CODE FOR THE DROP DOWN MENU*/}
-      </div>
       <div className="filter-container">
         <select
           value={sortType}
@@ -154,6 +160,8 @@ const MovieList = () => {
           />
         </Modal>
       )}
+      </main>
+      <Footer />
     </>
   );
 };
