@@ -1,11 +1,16 @@
-import React from 'react'
+import React from 'react';
+import './Footer.css';
 
 const Footer = () => {
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <footer className="footer">
+      <p>&copy; 2024 Flixster. All rights reserved.</p>
+      <nav className="footer-nav">
+        <a href="#privacy" className="footer-link">Privacy Policy</a>
+        <a href="#terms" className="footer-link">Terms of Service</a>
+      </nav>
+    </footer>
+  );
+};
 
-export default Footer
+export default Footer;
