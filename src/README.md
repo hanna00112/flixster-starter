@@ -4,7 +4,7 @@
 
 Submitted by: Hanna Abrahem
 
-Estimated time spent: **#** hours spent in total
+Estimated time spent: 15 hours spent in total
 
 Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE)
 
@@ -28,8 +28,8 @@ Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE)
   - [X] Users can view more details about a movie in a popup, such as runtime in minutes, backdrop poster, release date, genres, and/or an overview.
 - [X] **Sorting Options**
   - [X] Users can click on a filter by drop down to sort product by type (alphabetic, release date, rating).
-- [ ] **Layout**
-  - [ ] Website displays header, banner, search, movie grid, about, contact, and footer section.
+- [X] **Layout**
+  - [X] Website displays header, banner, search, movie grid, about, contact, and footer section.
 
 #### STRETCH FEATURES
 
@@ -44,26 +44,28 @@ Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE)
 - [ ] **Sidebar**
   - [ ] Users can open a sidebar
   - [ ] The sidebar displays the user's favorited and watched movies
+  - [ ] **Smartphone Friendly**
+  - [X] A design that is fully functional and aesthetically pleasing on smartphones, achieved with media queries
+
 
 ### Walkthrough Video
 
-`TODO://` Add the embedded URL code to your animated app walkthrough below, `ADD_EMBEDDED_CODE_HERE`. Make sure the video or gif actually renders and animates when viewing this README. (🚫 Remove this paragraph after adding walkthrough video)
 
-`ADD_EMBEDDED_CODE_HERE`
+https://www.loom.com/share/eca18bbd51a5484eb1e481d4f78dacca?sid=963f42a4-f93f-4ab0-bf21-bf010d8bfc8e 
 
 ### Reflection
 
 * Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Add your response here
+Yes, my first time seeing React was through the lecture so I have learned alot these past couple of days. Also beause things like modal and flexboxs was used in the past projects, I was able to feel more comfortable using and implementing these features again
 
 * If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
   
-Add your response here
+Styled the website to look more user friendly. Add more features like sorting through more options. 
 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
-Add your response here
+Seeing all of the different ways my classmates styled inspired me to add more to my CSS. Specifically some of my classmates had a different cover image than the modal picture of the same movie and I really liked how that looked, so I added that to my own website
 
 ### Open-source libraries used
 
@@ -71,4 +73,4 @@ Add your response here
 
 ### Shout out
 
-Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
+I appreciated all of the time instructors and my classmates spent looking at my code and help teaching me all of new React tools. 
