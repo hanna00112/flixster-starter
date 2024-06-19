@@ -6,7 +6,7 @@ Submitted by: Hanna Abrahem
 
 Estimated time spent: 15 hours spent in total
 
-Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE)
+Deployed Application (optional): https://flixster-starter-fvls.onrender.com
 
 ### Application Features
 
@@ -33,8 +33,8 @@ Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE)
 
 #### STRETCH FEATURES
 
-- [ ] **Deployment**
-  - [ ] Website is deployed via Render.
+- [X] **Deployment**
+  - [X] Website is deployed via Render.
 - [ ] **Embedded Movie Trailers**
   - [ ] Within the popup displaying a movie's details, users can play the movie trailer.
 - [ ] **Watched Checkbox**
@@ -44,7 +44,7 @@ Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE)
 - [ ] **Sidebar**
   - [ ] Users can open a sidebar
   - [ ] The sidebar displays the user's favorited and watched movies
-  - [ ] **Smartphone Friendly**
+- [X] **Smartphone Friendly**
   - [X] A design that is fully functional and aesthetically pleasing on smartphones, achieved with media queries
 
 
